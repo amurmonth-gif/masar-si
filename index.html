@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover"/>
+<title>MASAR | مسار — منصة الطالب العمانية</title>
+<meta name="description" content="MASAR — منصة عمانية لإنتاجية الطالب والتخطيط الذكي للدراسة. إعداد وتصميم: عامر بن خلفان الشكيري / معاذ بن عامر الشكيري @mo3th.x"/>
+<meta name="theme-color" content="#1C0B0E"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-title" content="مسار"/>
+<link id="favicon" rel="icon" href="assets/icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;600;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/cloud.css"/>
+
+
+</head>
+<body>
+<div class="app">
+
+  <!-- ===== الشريط الجانبي ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <img id="brandLogo" data-logo src="assets/icon.png" alt="MASAR" title="مسار"/>
+      <h1>MASAR<span>مسار — رفيق الطالب</span></h1>
+    </div>
+    <div class="nav-group">🏠 مسار الرئيسية</div>
+    <nav class="nav" id="nav">
+      <button data-s="dash"><span class="ico">🏠</span> الرئيسية</button>
+      <button data-s="sched"><span class="ico">🗓️</span> منظّم المذاكرة</button>
+      <button data-s="tasks"><span class="ico">✅</span> مهام اليوم</button>
+      <button data-s="faith"><span class="ico">🌱</span> الجرعة الإيمانية</button>
+      <button data-s="summ"><span class="ico">📚</span> مكتبة الملخصات</button>
+      <button data-s="ai"><span class="ico">🤖</span> مساعد مسار الذكي</button>
+      <button data-s="subs"><span class="ico">💎</span> الاشتراكات والأسعار</button>
+      <button data-s="city"><span class="ico">🏙️</span> مدينة مسار</button>
+      <button data-s="studyland"><span class="ico">🎮</span> مسار سيتي</button>
+      <div class="nav-group">📢 المنصات والإعلانات</div>
+      <button data-s="plat"><span class="ico">🇴🇲</span> المنصات التعليمية</button>
+      <div class="nav-group">🏫 مساري في مدرسة المتنبي</div>
+      <button data-s="school"><span class="ico">🏫</span> بوابة المدرسة</button>
+      <button data-s="admin" id="navAdmin" class="hidden"><span class="ico">🛡️</span> لوحة الإدارة</button>
+      <button data-s="teacher" id="navTeacher" class="hidden"><span class="ico">👩‍🏫</span> لوحة المعلم</button>
+      <button data-s="parents" id="navParent" class="hidden"><span class="ico">👨‍👩‍👧</span> لوحة ولي الأمر</button>
+      <button data-s="students" id="navStudent" class="hidden"><span class="ico">🎓</span> بوابة الطالب</button>
+    </nav>
+    <div class="side-foot">إعداد وتصميم<br/><b>عامر بن خلفان الشكيري</b><br/><b>معاذ بن عامر الشكيري</b> <span dir="ltr">@mo3th.x</span></div>
+  </aside>
+
+  <div class="main">
+    <!-- ===== الشريط العلوي ===== -->
+    <header class="topbar">
+      <div class="tb-right">
+        <button id="menuBtn">☰</button>
+        <h2 id="pgTitle">الرئيسية</h2>
+        <div class="vision-top" id="visionTop"></div>
+      </div>
+      <div class="tb-left">
+        <button class="mc-chip busy" id="mcChip" type="button"><span class="mc-dot"></span>☁ جارٍ الاتصال…</button>
+        <div class="player" title="مشغل الصوت الخلفي">
+          <select id="audSrc">
+            <option value="quran">📖 قرآن كريم</option>
+            <option value="adhkar">🤲 أذكار</option>
+            <option value="calm">🎧 صوت هادئ</option>
+          </select>
+          <button id="audPlay">▶</button>
+        </div>
+        <button id="bellBtn" title="الإشعارات">🔔<span class="b-badge hidden" id="bellBadge">0</span></button>
+        <button id="ownerBtn" tabindex="-1" aria-hidden="true" style="display:none">👑</button>
+        <button id="loginBtn">تسجيل الدخول</button>
+        <div class="avatar" id="avatar">م</div>
+      </div>
+    </header>
+
+    <div class="content">
+
+      <!-- ===== 1) مسار الرئيسية ===== -->
+      <section class="section active" id="s-dash">
+        <div class="hero">
+          <h3 id="heroTitle"></h3>
+          <p id="heroDesc"></p>
+          <span class="lvl" id="heroBadge"></span>
+        </div>
+        <div class="quick-grid" id="quickGrid"></div>
+        <div class="stats">
+          <div class="stat"><div class="num" id="stClock">—</div><div class="lbl">الوقت الآن</div></div>
+          <div class="stat"><div class="num" id="stNext">—</div><div class="lbl">الحصة القادمة</div></div>
+          <div class="stat"><div class="num" id="stTasks">0</div><div class="lbl">مهام غير منجزة</div></div>
+          <div class="stat"><div class="num" id="stPrice">—</div><div class="lbl">تمريرة الفصل</div></div>
+        </div>
+        <div class="grid2">
+          <div class="panel">
+            <h4>⭐ ميزات مسار <span class="tag">MASAR v2</span></h4>
+            <ul class="list" id="featList"></ul>
+          </div>
+          <div class="clock-card">
+            <div id="liveClock">00:00:00</div>
+            <div class="clock-date" id="liveDate">—</div>
+            <div class="next-subj"><div class="lbl">الحصة القادمة</div><div class="val" id="nextSubj">—</div></div>
+            <p id="motivQuote"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== منظّم المذاكرة ===== -->
+      <section class="section" id="s-sched">
+        <span class="sec-tag">مسار الرئيسية</span>
+        <h3 class="sec">منظّم المذاكرة</h3>
+        <p class="sec-desc">جدولك اليومي يظهر هنا بصرياً — الحصة الحالية تُضيء تلقائياً. جدول المادة يضيفه معلمها، والجدول العام يديره المالك.</p>
+        <div class="sched-grid" id="schedGrid"></div>
+      </section>
+
+      <!-- ===== مهام اليوم ===== -->
+      <section class="section" id="s-tasks">
+        <span class="sec-tag">مسار الرئيسية</span>
+        <h3 class="sec">مهام اليوم</h3>
+        <p class="sec-desc">أضف مهامك واضغط «تم إنجاز المهمة». المهام غير المنجزة تُطلق إشعاراً وتنبيهاً في جرس الإشعارات.</p>
+        <div class="panel">
+          <div class="adm-row">
+            <input id="taskText" placeholder="مثال: مراجعة رياضيات — الفصل الثاني" style="flex:1;min-width:180px">
+            <button class="btn primary" id="addTask">➕ إضافة مهمة</button>
+          </div>
+          <div id="taskAlert" class="hidden" style="background:rgba(224,138,138,.12);border:1px solid var(--bad);border-radius:12px;padding:10px 14px;font-size:.75rem;margin:10px 0"></div>
+          <div class="list-box" id="taskList"></div>
+        </div>
+      </section>
+
+
+      <!-- ===== جدولي الخاص ===== -->
+      <section class="section" id="s-planner">
+        <span class="sec-tag">مسار الرئيسية</span>
+        <h3 class="sec" id="plannerHead">🗒️ أنشئ جدولك الخاص</h3>
+        <p class="sec-desc">ابنِ جدولك بأسلوبك: يومي أو أسبوعي أو شهري. كل جدول تحفظه يبقى معك، وتحت الجدول عبارة تحفيز تتجدد كل يوم.</p>
+        <div class="panel">
+          <div class="planner-tabs" id="plannerTabs">
+            <button class="ptab active" data-pm="daily">☀️ يومي</button>
+            <button class="ptab" data-pm="weekly">📅 أسبوعي</button>
+            <button class="ptab" data-pm="monthly">🗓️ شهري</button>
+          </div>
+          <div id="plannerBody"></div>
+          <div class="motiv-box">
+            <div class="mq" id="plannerQuote">—</div>
+            <span class="ms">عبارة تحفيز · مسار</span><br>
+            <button class="motiv-next" onclick="plannerNextQuote()">🔄 عبارة أخرى</button>
+          </div>
+        </div>
+      </section>
+      <!-- ===== الجرعة الإيمانية ===== -->
+      <section class="section" id="s-faith">
+        <span class="sec-tag">مسار الرئيسية</span>
+        <h3 class="sec">الجرعة الإيمانية والتحفيز</h3>
+        <p class="sec-desc">أذكار الصباح والمساء والأدعية المختارة، وعبارات تحفيزية تتجدد يومياً.</p>
+        <div class="grid2">
+          <div class="panel">
+            <h4>🌱 الأذكار والأدعية</h4>
+            <div class="adm-row">
+              <select id="adhkarCat" style="max-width:200px">
+                <option value="morning">🌅 أذكار الصباح</option>
+                <option value="evening">🌇 أذكار المساء</option>
+                <option value="duaa">🤲 أدعية مختارة</option>
+              </select>
+            </div>
+            <div id="adhkarList"></div>
+          </div>
+          <div class="panel">
+            <h4>💬 عبارة اليوم</h4>
+            <div class="vision-card" id="dailyQuote" style="margin:0"></div>
+            <p class="mini" style="margin-top:10px">تتغير العبارة كل يوم تلقائياً. استمع لخلفية هادئة من المشغل الصوتي في الأعلى.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== مكتبة الملخصات ===== -->
+      <section class="section" id="s-summ">
+        <span class="sec-tag">مسار الرئيسية</span>
+        <h3 class="sec">مكتبة الملخصات العامة</h3>
+        <p class="sec-desc">ملخصات شاملة لجميع المواد يضيفها المالك والمعلمون. اختر صفّك ثم استعرض.</p>
+        <div class="panel">
+          <div class="btn-row" id="gradeBtns"></div>
+          <div class="list-box" id="summList"></div>
+        </div>
+      </section>
+
+      <!-- ===== المساعد الذكي ===== -->
+      <section class="section" id="s-ai">
+        <span class="sec-tag">Masar AI</span>
+        <h3 class="sec">مساعد مسار الذكي</h3>
+        <p class="sec-desc">اسأل عن شرح درس، تنظيم الوقت، أو دليل منصتي إصرار وهمم.</p>
+        <div class="chat-box">
+          <div id="chatLog"></div>
+          <div class="chat-input">
+            <input id="chatText" placeholder="اكتب سؤالك… مثلاً: كيف أسجل دخول إصرار؟">
+            <button id="chatSend">➤</button>
+          </div>
+        </div>
+        <p class="mini" id="aiQuota" style="margin-top:8px"></p>
+      </section>
+
+      <!-- ===== الاشتراكات ===== -->
+      <section class="section" id="s-subs">
+        <span class="sec-tag">مسار الرئيسية</span>
+        <h3 class="sec">بوابة الاشتراكات والأسعار</h3>
+        <p class="sec-desc">ادفع محلياً عبر التحويل أو البطاقات: بنك مسقط، بنك نزوى، البنك الأهلي.</p>
+        <div class="tier-grid" id="tierGrid"></div>
+      </section>
+
+      <!-- ===== مدينة مسار ===== -->
+      <section class="section" id="s-city">
+        <span class="sec-tag">المدينة التعليمية</span>
+        <h3 class="sec" id="cityTitle"></h3>
+        <p class="sec-desc" id="cityDesc"></p>
+        <div class="vision-card" id="cityWelcome"></div>
+        <div class="city-grid" id="cityGrid"></div>
+        <div class="panel" style="margin-top:16px">
+          <h4>📚 مكتبة المدينة</h4>
+          <div class="btn-row" id="cityGradeBtns"></div>
+          <div class="list-box" id="citySummList"></div>
+        </div>
+      </section>
+
+      <!-- ===== 3) المنصات والإعلانات ===== -->
+      <section class="section" id="s-plat">
+        <span class="sec-tag">شريط الإعلانات والمنصات</span>
+        <h3 class="sec">المنصات التعليمية العمانية</h3>
+        <p class="sec-desc">أدلة سريعة لأهم المنصات، والمساعد الذكي يجيب خطوة بخطوة. ظهور المنصات وإخفاؤها يتحكم به المالك.</p>
+        <div class="plat-grid" id="platGrid"></div>
+        <div class="panel" style="margin-top:16px">
+          <h4>📢 إعلانات مسار</h4>
+          <div class="ad-grid" id="adGrid"></div>
+        </div>
+      </section>
+
+      <!-- ===== 2) بوابة مدرسة المتنبي ===== -->
+      <section class="section" id="s-school">
+        <span class="sec-tag">مساري في مدرسة المتنبي</span>
+        <h3 class="sec">بوابة المدرسة</h3>
+        <div class="vision-card" id="visionCard">«إعداد جيل متمكن من مهارات المستقبل ومحافظ على الهوية العمانية»<div class="mini" style="margin-top:5px">— الرؤية المعتمدة للمدرسة</div></div>
+        <p class="sec-desc">أربعة أقسام منفصلة تماماً — كل قسم بمدخل صلاحيات محمي:</p>
+        <div class="entry-grid">
+          <div class="entry-card">
+            <div class="ei">🛡️</div><h4>قسم الإدارة</h4>
+            <p>السجلات الدراسية، تقارير المخالفات، وشؤون الطلاب والمعلمين.<br/>رمز الدخول مطلوب.</p>
+            <button class="btn primary" id="eAdmin">دخول الإدارة</button>
+          </div>
+          <div class="entry-card">
+            <div class="ei">👩‍🏫</div><h4>قسم المعلمين</h4>
+            <p>جدول المادة، معايير التقييم، الدرجات، المخالفات، الملخصات، ورسائل الأولياء.<br/>رمز القسم + حساب المعلم.</p>
+            <button class="btn primary" id="eTeacher">دخول المعلمين</button>
+          </div>
+          <div class="entry-card">
+            <div class="ei">👨‍👩‍👧</div><h4>قسم أولياء الأمور</h4>
+            <p>درجات الابن، مخالفاته، جدوله ومهامه، والتواصل مع معلم المادة.<br/>رمز سري أو رقم الهاتف + اسم الطالب.</p>
+            <button class="btn primary" id="eParent">دخول أولياء الأمور</button>
+          </div>
+          <div class="entry-card">
+            <div class="ei">🎓</div><h4>قسم الطلاب</h4>
+            <p>مخالفاتي وطرق تصحيحها، ملخصات موادي، والتوجيه المهني.</p>
+            <button class="btn primary" id="eStudent">دخول الطلاب</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== لوحة الإدارة ===== -->
+      <section class="section" id="s-admin">
+        <span class="sec-tag">قسم الإدارة — رمز محمي</span>
+        <h3 class="sec">🛡️ لوحة إدارة المدرسة</h3>
+        <div class="stats">
+          <div class="stat"><div class="num" id="adStatVio">0</div><div class="lbl">مخالفات مرصودة</div></div>
+          <div class="stat"><div class="num" id="adStatPay">0</div><div class="lbl">طلبات الاشتراك</div></div>
+          <div class="stat"><div class="num" id="adStatTeach">0</div><div class="lbl">معلمون</div></div>
+          <div class="stat"><div class="num" id="adStatStu">0</div><div class="lbl">طلاب مسجلون</div></div>
+          <div class="stat"><div class="num" id="adStatMsg">0</div><div class="lbl">رسائل الأولياء</div></div>
+        </div>
+        <div class="grid2">
+          <div class="panel">
+            <h4>📋 السجلات الدراسية وتقارير المخالفات <span class="tag">من المعلمين</span></h4>
+            <div class="list-box" id="adminVioList" style="max-height:300px"></div>
+          </div>
+          <div class="panel">
+            <h4>👩‍🏫 شؤون المعلمين</h4>
+            <div class="list-box" id="teacherList" style="max-height:220px"></div>
+            <p class="mini" style="margin-top:8px">إنشاء حسابات المعلمين وتعيين موادهم من <b>لوحة المالك</b>.</p>
+          </div>
+          <div class="panel">
+            <h4>🎓 شؤون الطلاب <span class="tag">إضافة حساب</span></h4>
+            <form id="addStudentForm">
+              <div class="adm-row" style="flex-wrap:wrap">
+                <input id="nsName" placeholder="اسم الطالب الكامل" style="flex:1;min-width:140px">
+                <select id="nsGrade" style="max-width:100px"><option value="10">الصف 10</option><option value="11">الصف 11</option><option value="12">الصف 12</option></select>
+              </div>
+              <div class="adm-row" style="flex-wrap:wrap">
+                <input id="nsUser" dir="ltr" placeholder="اسم المستخدم" style="min-width:120px">
+                <input id="nsPass" dir="ltr" type="password" placeholder="كلمة المرور" style="min-width:120px">
+                <input id="nsPhone" dir="ltr" placeholder="هاتف ولي الأمر" style="min-width:130px">
+                <button class="btn primary" style="padding:10px 18px">➕ تسجيل طالب</button>
+              </div>
+            </form>
+            <div class="list-box" id="studentList" style="max-height:220px"></div>
+          </div>
+          <div class="panel">
+            <h4>📨 رسائل أولياء الأمور</h4>
+            <div class="list-box" id="adminMsgList" style="max-height:240px"></div>
+          </div>
+          <div class="panel">
+            <h4>💎 طلبات الاشتراك</h4>
+            <div class="list-box" id="adminPayList" style="max-height:220px"></div>
+          </div>
+          <div class="panel">
+            <h4>🔐 رموز الدخول</h4>
+            <form id="adminCodeForm">
+              <div class="adm-row" style="flex-wrap:wrap">
+                <input id="ncAdmin" dir="ltr" type="password" placeholder="رمز الإدارة" style="min-width:110px">
+                <input id="ncTeach" dir="ltr" type="password" placeholder="رمز المعلمين" style="min-width:110px">
+                <input id="ncParent" dir="ltr" type="password" placeholder="رمز الأولياء" style="min-width:110px">
+                <button class="btn primary" style="padding:10px 18px">💾 حفظ</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== لوحة المعلم ===== -->
+      <section class="section" id="s-teacher">
+        <span class="sec-tag">قسم المعلمين — رمز محمي</span>
+        <h3 class="sec" id="teacherHello">👩‍🏫 لوحة المعلم</h3>
+        <div class="panel">
+          <h4>📚 موادّي</h4>
+          <div class="subj-chips" id="mySubjChips"></div>
+        </div>
+        <div class="grid2">
+          <div class="panel">
+            <h4>🗓️ جدول مادتي <span class="tag">تعديل</span></h4>
+            <form id="tSchedForm">
+              <div class="adm-row" style="flex-wrap:wrap">
+                <input id="tsTime" dir="ltr" placeholder="07:30" style="width:90px;text-align:center">
+                <input id="tsRoom" placeholder="القاعة" style="min-width:100px">
+                <button class="btn primary" style="padding:10px 18px">➕ حصة</button>
+              </div>
+            </form>
+            <div class="list-box" id="tSchedList" style="max-height:200px"></div>
+          </div>
+          <div class="panel">
+            <h4>📏 معايير التقييم <span class="tag">لمادتي</span></h4>
+            <form id="evalForm">
+              <div class="adm-row" style="flex-wrap:wrap">
+                <input id="evalText" placeholder="مثال: المشاركة الصفية" style="flex:1;min-width:140px">
+                <input id="evalWeight" dir="ltr" placeholder="الوزن %" style="max-width:90px;text-align:center">
+                <button class="btn primary" style="padding:10px 18px">➕ إضافة</button>
+              </div>
+            </form>
+            <div class="list-box" id="evalList" style="max-height:180px"></div>
+          </div>
+          <div class="panel">
+            <h4>📝 تسجيل الدرجات وتقارير الأداء</h4>
+            <form id="gradeForm">
+              <div class="adm-row" style="flex-wrap:wrap">
+                <input id="grStudent" placeholder="اسم الطالب الكامل" style="flex:1;min-width:140px">
+                <input id="grScore" dir="ltr" placeholder="الدرجة" style="max-width:90px;text-align:center">
+              </div>
+              <div class="adm-row">
+                <input id="grNote" placeholder="ملاحظة الأداء" style="flex:1;min-width:150px">
+                <button class="btn primary" style="padding:10px 18px">💾 تسجيل</button>
+              </div>
+            </form>
+            <div class="list-box" id="gradeList" style="max-height:200px"></div>
+          </div>
+          <div class="panel">
+            <h4>⚠️ رصد المخالفات السلوكية <span class="tag">تظهر للإدارة والأولياء والطالب</span></h4>
+            <form id="vioForm">
+              <div class="adm-row" style="flex-wrap:wrap">
+                <input id="vioStudent" placeholder="اسم الطالب الكامل" style="flex:1;min-width:140px">
+                <select id="vioGrade" style="max-width:100px"><option value="10">الصف 10</option><option value="11">الصف 11</option><option value="12">الصف 12</option></select>
+              </div>
+              <div class="adm-row">
+                <input id="vioText" placeholder="وصف المخالفة + طريقة التصحيح" style="flex:1;min-width:150px">
+                <button class="btn primary" style="padding:10px 18px">📨 رصد</button>
+              </div>
+            </form>
+            <div class="list-box" id="vioList" style="max-height:180px"></div>
+          </div>
+          <div class="panel">
+            <h4>📄 رفع الملخصات والمذكرات</h4>
+            <form id="tSummForm">
+              <div class="adm-row" style="flex-wrap:wrap">
+                <input id="tSummTitle" placeholder="عنوان الملخص" style="flex:1;min-width:140px">
+                <input id="tSummUrl" dir="ltr" placeholder="https://رابط الملخص" style="flex:1;min-width:160px">
+                <button class="btn primary" style="padding:10px 18px">➕ رفع</button>
+              </div>
+            </form>
+            <div class="list-box" id="tSummList" style="max-height:180px"></div>
+          </div>
+          <div class="panel">
+            <h4>📨 رسائل أولياء الأمور <span class="tag">صندوق الوارد</span></h4>
+            <div class="list-box" id="tmsgList" style="max-height:260px"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== لوحة ولي الأمر ===== -->
+      <section class="section" id="s-parents">
+        <span class="sec-tag">قسم أولياء الأمور — رمز محمي</span>
+        <h3 class="sec" id="parentHello">👨‍👩‍👧 متابعة الابن/البنت</h3>
+        <div class="grid2">
+          <div class="panel">
+            <h4>📋 سجل المخالفات والتوجيه <span class="tag" id="parChildBadge"></span></h4>
+            <div class="list-box" id="parVioList"></div>
+          </div>
+          <div class="panel">
+            <h4>📝 التقارير الأكاديمية والدرجات</h4>
+            <div class="list-box" id="parGradeList"></div>
+          </div>
+          <div class="panel">
+            <h4>🗓️ جدول المذاكرة والمهام</h4>
+            <div class="sched-grid" id="parSchedList" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr))"></div>
+            <div class="list-box" id="parTaskList" style="margin-top:10px"></div>
+          </div>
+          <div class="panel">
+            <h4>✉️ إرسال ملاحظة أو استفسار لمعلم المادة</h4>
+            <form id="pmsgForm">
+              <div class="adm-row" style="flex-wrap:wrap">
+                <select id="pmsgSubject" style="max-width:190px"></select>
+              </div>
+              <div class="adm-row">
+                <input id="pmsgText" placeholder="نص الملاحظة أو الاستفسار" style="flex:1;min-width:160px">
+                <button class="btn primary" style="padding:10px 18px">📨 إرسال</button>
+              </div>
+            </form>
+            <p class="mini">تصل الرسالة بخصوصية تامة لمعلم المادة فقط، ويظهر لك رده هنا.</p>
+            <div class="list-box" id="parMsgList" style="max-height:240px"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== بوابة الطالب ===== -->
+      <section class="section" id="s-students">
+        <span class="sec-tag">قسم الطلاب</span>
+        <h3 class="sec" id="stuHello">🎓 بوابة الطالب</h3>
+        <div class="grid2">
+          <div class="panel">
+            <h4>⚠️ مخالفاتي وطرق التصحيح</h4>
+            <div class="list-box" id="stuVioList"></div>
+            <p class="mini" style="margin-top:8px">التوجيه: ناقش مخالفتك مع معلمك، التزم بخطة التصحيح، واطلب متابعة من رائد الفصل.</p>
+          </div>
+          <div class="panel">
+            <h4>📚 ملخصات وموادي الدراسية</h4>
+            <div class="list-box" id="stuSummList" style="max-height:280px"></div>
+          </div>
+          <div class="panel">
+            <h4>🧭 التوجيه المهني</h4>
+            <p class="mini">دليل الطالب لاختيار تخصصه المستقبلي.</p>
+            <div class="btn-row">
+              <a class="chip" href="https://khuta.om/" target="_blank" rel="noopener">🔗 منصة خطى — khuta.om</a>
+              <a class="chip" href="https://masari-holland-oman.floot.app/" target="_blank" rel="noopener">🧪 اختبار هولاند — المرشد المهني</a>
+            </div>
+          </div>
+          <div class="panel">
+            <h4>🗓️ جدولي ومهامي</h4>
+            <div class="sched-grid" id="stuSchedList" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr))"></div>
+            <div class="btn-row"><button class="btn ghost" onclick="go('tasks')">الانتقال إلى مهام اليوم ←</button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 4) لوحة المالك السرية ===== -->
+      <section class="section" id="s-owner">
+        <span class="sec-tag">لوحة المالك — تحكم مطلق</span>
+        <h3 class="sec">👑 مركز التحكم الكامل</h3>
+        <div class="panel">
+          <div class="tabs" id="ownerTabs">
+            <button class="tab-btn active" data-ot="members">👥 الأعضاء والطلاب</button>
+            <button class="tab-btn" data-ot="teachers">👩‍🏫 المعلمون</button>
+            <button class="tab-btn" data-ot="sections">🏛️ الأقسام والمحتوى</button>
+            <button class="tab-btn" data-ot="summ">📄 الملخصات</button>
+            <button class="tab-btn" data-ot="media">📢 الميديا والإعلانات</button>
+            <button class="tab-btn" data-ot="audio">🎵 الصوت والمؤثرات</button>
+            <button class="tab-btn" data-ot="pricing">💰 الأسعار والاشتراكات</button>
+            <button class="tab-btn" data-ot="navcfg">🎛️ الأقسام والترتيب</button>
+            <button class="tab-btn" data-ot="security">🔐 الأمان والنسخ</button>
+          </div>
+          <div id="ot-members" class="owner-pane"></div>
+          <div id="ot-teachers" class="owner-pane" style="display:none"></div>
+          <div id="ot-sections" class="owner-pane" style="display:none"></div>
+          <div id="ot-summ" class="owner-pane" style="display:none"></div>
+          <div id="ot-media" class="owner-pane" style="display:none"></div>
+          <div id="ot-audio" class="owner-pane" style="display:none"></div>
+          <div id="ot-pricing" class="owner-pane" style="display:none"></div>
+          <div id="ot-navcfg" class="owner-pane" style="display:none"></div>
+          <div id="ot-security" class="owner-pane" style="display:none"></div>
+        </div>
+      </section>
+
+
+      <!-- ================= مسار سيتي (مدينة الطالب التفاعلية) ================= -->
+      <section class="section" id="s-studyland">
+        <div id="studyland-section">
+          <div class="sl-head">
+            <div class="sl-head-txt"><h3>مسار سيتي</h3><p>مدينتك الدراسية التفاعلية — تخطيط، أهداف، درجات، مكتبة وإنجازات في مكان واحد.</p></div>
+            <span class="sl-head-badge">Masar City</span>
+          </div>
+
+
+<header>
+  <div class="logo" onclick="sl_goHome()">
+    <div class="logo-badge" title="مسار MASAR"><img data-logo src="assets/icon.png" alt="M" style="width:34px;height:34px;border-radius:9px;object-fit:cover"/></div>
+    <div class="logo-title"><div class="ar">مسار</div><div class="en">MASAR</div></div>
+  </div>
+  <div class="studyland-logo"><b>مسار</b><span class="go">MASAR</span></div>
+</header>
+
+<section class="hero" id="hero">
+  <h1>مسار <span class="pixel-word">MASAR</span></h1>
+  <p>مدينتك الدراسية التفاعلية بأسلوب Pixel Art — نعيش رحلتك الدراسية خطوة بخطوة 🎮</p>
+  <div class="progress-dots" id="heroDots"><i></i><i class="gold"></i><i></i></div>
+</section>
+
+<div class="sl-main-wrap">
+  <!-- ================= الانضمام ================= -->
+  <section id="onboarding">
+    <div class="card" id="step1">
+      <h2>اختر صفك الدراسي</h2>
+      <p class="sub">سنضبط مصادر دراستك بناءً عليه.</p>
+      <div class="grades" id="gradeCards">
+        <div class="grade-card" data-grade="12"><div class="num">12</div><div class="lbl">الصف</div></div>
+        <div class="grade-card" data-grade="11"><div class="num">11</div><div class="lbl">الصف</div></div>
+        <div class="grade-card" data-grade="10"><div class="num">10</div><div class="lbl">الصف</div></div>
+      </div>
+      <div class="step-nav"><span></span><span class="pix" style="font-size:.55rem;color:var(--muted)">MASAR</span></div>
+    </div>
+
+    <div class="card hidden" id="step2">
+      <h2>اختر شخصيتك</h2>
+      <p class="sub">رفيقك في رحلة الدراسة.</p>
+      <div class="char-stage">
+        <button class="arrow-btn" onclick="sl_prevChar()" aria-label="السابق">←</button>
+        <div class="char-frame"><img class="pixel-sprite" id="charImg" src="" alt="الشخصية"></div>
+        <button class="arrow-btn" onclick="sl_nextChar()" aria-label="التالي">→</button>
+      </div>
+      <div class="char-name" id="charName"></div>
+      <p class="char-bio" id="charBio"></p>
+      <div class="char-dots" id="charDots"><i class="on"></i><i></i></div>
+      <div class="step-nav"><button class="btn gold" style="margin-inline:auto" onclick="sl_pickChar()">اختر هذه الشخصية ✨</button></div>
+      <div class="step-nav">
+        <button class="btn ghost" onclick="sl_showStep(3)">التالي ←</button>
+        <button class="btn" onclick="sl_showStep(1)">→ رجوع</button>
+      </div>
+    </div>
+
+    <div class="card hidden" id="step3">
+      <h2>ما اسمك؟</h2>
+      <p class="sub">سنرحب بك في لوحتك الرئيسية.</p>
+      <div class="avatar-mini"><img id="avatarMini" src="" alt="أفاتار"></div>
+      <input class="name-input" id="nameInput" type="text" placeholder="الاسم الأول" maxlength="20">
+      <div class="welcome-msg" id="welcomeMsg"></div>
+      <div class="step-nav"><button class="btn navy" style="margin-inline:auto" onclick="sl_enterCity()">ادخل مسار ←</button></div>
+      <div class="step-nav"><span></span><button class="btn" onclick="sl_showStep(2)">→ رجوع</button></div>
+    </div>
+  </section>
+
+  <!-- ================= لوحة التحكم ================= -->
+  <section class="dash" id="dashboard">
+    <div class="card">
+      <div class="profile-card">
+        <div class="profile-avatar"><img id="dashAvatar" src="" alt="أفاتار"></div>
+        <div>
+          <div class="hello">أهلًا، <span id="userName">صديقي</span>! 🌸</div>
+          <span class="grade-badge" id="userGradeBadge">الصف 11 🎓</span>
+          <div style="color:var(--muted);font-weight:700" id="userCharName">سالم</div>
+          <div class="profile-actions">
+            <button class="btn purple" onclick="sl_openEditModal()">تعديل ✏️</button>
+            <button class="btn" onclick="sl_logout()">خروج ↪️</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="sec">🌟 تقدمك اليوم</h2>
+    <div class="stats">
+      <div class="stat"><div class="ic" style="background:#e2f6ec">✅</div><div class="val" id="statTasks">0</div><div class="lbl">مهام مكتملة</div></div>
+      <div class="stat"><div class="ic" style="background:#f0e8fc">🎯</div><div class="val" id="statGoal">—</div><div class="lbl">الهدف الحالي</div></div>
+      <div class="stat"><div class="ic" style="background:#e4eefc">📅</div><div class="val" id="statDeadline">—</div><div class="lbl">أقرب موعد</div></div>
+      <div class="stat"><div class="ic" style="background:#fdefdd">🔥</div><div class="val" id="statStreak">1</div><div class="lbl">أيام النشاط</div></div>
+    </div>
+
+    <h2 class="sec">🗺️ مدينة مسار</h2>
+    <div class="city">
+      <a class="zone z-mint" onclick="sl_openView('planning')"><span class="star">★</span><span class="emoji">🎯</span><b>ساحة الأهداف</b><small>صوّب نحو النجوم</small></a>
+      <a class="zone z-blue" onclick="sl_openView('planning2')"><span class="star">★</span><span class="emoji">📝</span><b>مركز التخطيط</b><small>يومي · أسبوعي · شهري</small></a>
+      <a class="zone z-pink" onclick="sl_openView('ach')"><span class="emoji">🏆</span><b>قاعة الإنجازات</b><small>معرض لحظات فخرك</small></a>
+      <a class="zone z-yellow" onclick="sl_openView('grades')"><span class="emoji">📊</span><b>مركز الدرجات</b><small>سجّل متابعة درجاتك</small></a>
+      <a class="zone z-peri" onclick="sl_openView('library')"><span class="emoji">📚</span><b>المكتبة</b><small>ملخصات صفك على Drive</small></a>
+      <a class="zone z-rose" onclick="sl_openView('mail')"><span class="emoji">💌</span><b>بريد المستقبل</b><small>رسالة لنفسك لاحقاً</small></a>
+      <a class="zone z-gray" onclick="sl_openEditModal()"><span class="emoji">👤</span><b>ملفي</b><small>عدّل اسمك وصفك وشخصيتك</small></a>
+    </div>
+    <p class="city-hint">🌟 اختر مكانًا في المدينة لتبدأ مغامرتك</p>
+  </section>
+
+  <!-- ================= ساحة الأهداف ================= -->
+  <section class="view" id="view-goals">
+    <div class="page-head">
+      <button class="btn back-btn" onclick="sl_goHome()">→ العودة إلى المدينة</button>
+      <div class="page-title">ساحة الأهداف 🎯</div><span></span>
+    </div>
+    <div class="card">
+      <div class="row">
+        <input class="input" id="goalText" placeholder="...هدف جديد" maxlength="80">
+        <select class="input" id="goalPrio">
+          <option value="عالية">أولوية عالية</option>
+          <option value="متوسطة" selected>أولوية متوسطة</option>
+          <option value="منخفضة">أولوية منخفضة</option>
+        </select>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <button class="btn" onclick="sl_openDatePicker()">📅 اختيار تاريخ: <b id="goalDateLbl">بدون</b></button>
+        <button class="btn green wide" style="flex:1" onclick="sl_addGoal()">+ هدف</button>
+      </div>
+      <div id="goalList"></div>
+      <div class="empty" id="goalEmpty">
+        <div class="big">🎯</div>
+        <b>لا توجد أهداف بعد</b>
+        <div>حدد هدفًا دراسيًا وصوّب للنجوم!</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= مركز التخطيط ================= -->
+  <section class="view" id="view-planning">
+    <div class="page-head">
+      <button class="btn back-btn" onclick="sl_goHome()">→ العودة إلى المدينة</button>
+      <div class="page-title">مركز التخطيط 📝</div><span></span>
+    </div>
+    <div class="tabs">
+      <button class="tab active" onclick="sl_switchPlan('daily',this)">اليومي</button>
+      <button class="tab" onclick="sl_switchPlan('weekly',this)">الأسبوعي</button>
+      <button class="tab" onclick="sl_switchPlan('monthly',this)">الشهري</button>
+    </div>
+
+    <!-- اليومي -->
+    <div class="panel active" id="plan-daily">
+      <div class="card">
+        <h2 id="dailyTitle">مخطط اليوم</h2>
+        <div class="mini-card">
+          <h3>🎯 هدف اليوم</h3>
+          <input class="input" id="dailyGoal" placeholder="ما هدفك اليوم؟" style="width:100%">
+        </div>
+        <div class="mini-card">
+          <h3>💧 تتبّع الماء</h3>
+          <div class="water-row">
+            <button class="plus-btn" onclick="sl_water(-1)">−</button>
+            <div class="water-count"><span id="waterVal">0</span> أكواب</div>
+            <button class="plus-btn green" onclick="sl_water(1)">+</button>
+          </div>
+        </div>
+        <div class="mini-card">
+          <h3>😊 مزاج اليوم</h3>
+          <div class="moods" id="moods">
+            <button class="mood" data-m="😢">😢</button><button class="mood" data-m="😕">😕</button>
+            <button class="mood" data-m="😐">😐</button><button class="mood" data-m="🙂">🙂</button>
+            <button class="mood" data-m="😄">😄</button>
+          </div>
+        </div>
+        <div class="mini-card">
+          <h3>📌 المهام</h3>
+          <div class="row">
+            <input class="input" id="taskInput" placeholder="...أضف مهمة" onkeydown="if(event.key==='Enter')addTask()">
+            <button class="plus-btn" onclick="sl_addTask()">+</button>
+          </div>
+          <div class="empty" id="tasksEmpty" style="padding:12px">لا توجد مهام معلّقة.</div>
+          <ul class="tasks" id="slTaskList"></ul>
+          <h3 style="margin-top:14px">المهام المنجزة ✓</h3>
+          <div class="empty" id="doneEmpty" style="padding:12px">لم تُنجز أي مهام بعد.</div>
+          <ul class="tasks" id="doneList"></ul>
+        </div>
+        <div class="mini-card">
+          <h3>📖 مواد الدراسة</h3>
+          <div class="row">
+            <input class="input" id="subjectInput" placeholder="...أضف مادة" onkeydown="if(event.key==='Enter')addSubject()">
+            <button class="plus-btn green" onclick="sl_addSubject()">+</button>
+          </div>
+          <div class="empty" id="subjectsEmpty" style="padding:12px">لا توجد مواد.</div>
+          <ul class="tasks" id="subjectList"></ul>
+        </div>
+        <div class="mini-card">
+          <h3>✏️ ملاحظات</h3>
+          <textarea class="input" id="notesArea" placeholder="...دوّن أي شيء تريده"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- الأسبوعي -->
+    <div class="panel" id="plan-weekly">
+      <div class="card"><h2>مخطط الأسبوع</h2><div id="weekCards"></div></div>
+    </div>
+
+    <!-- الشهري -->
+    <div class="panel" id="plan-monthly">
+      <div class="card">
+        <h2>التقويم الشهري</h2>
+        <div class="cal-nav">
+          <button class="btn" onclick="sl_calNav(-1)">‹</button>
+          <b id="calTitle"></b>
+          <button class="btn" onclick="sl_calNav(1)">›</button>
+        </div>
+        <div class="day-cal" id="calGrid"></div>
+        <p class="sub" style="margin-top:12px">اضغط على أي يوم لإضافة ملاحظات ومهام وتذكيرات وأولويات.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= مركز الدرجات ================= -->
+  <section class="view" id="view-grades">
+    <div class="page-head">
+      <button class="btn back-btn" onclick="sl_goHome()">→ العودة إلى المدينة</button>
+      <div class="page-title">مركز الدرجات 📊</div><span></span>
+    </div>
+    <div class="card">
+      <div class="metrics">
+        <div class="metric m1"><div class="v" id="mExams">0</div><div class="l">الامتحانات</div></div>
+        <div class="metric m2"><div class="v" id="mAvg">—</div><div class="l">المتوسط</div></div>
+        <div class="metric m3"><div class="v" id="mTop">—</div><div class="l">الأعلى</div></div>
+      </div>
+      <div class="mini-card">
+        <div class="row">
+          <input class="input" id="examSubject" placeholder="المادة" style="flex:2">
+          <input class="input" id="examScore" type="number" min="0" max="100" placeholder="الدرجة" style="flex:1">
+          <button class="plus-btn" onclick="sl_addExam()">+</button>
+        </div>
+      </div>
+      <div class="empty" id="examsEmpty">لا توجد درجات مسجلة بعد.</div>
+      <ul class="tasks" id="examList"></ul>
+    </div>
+  </section>
+
+  <!-- ================= قاعة الإنجازات ================= -->
+  <section class="view" id="view-ach">
+    <div class="page-head">
+      <button class="btn back-btn" onclick="sl_goHome()">→ العودة إلى المدينة</button>
+      <div class="page-title">قاعة الإنجازات 🏆</div><span></span>
+    </div>
+    <div class="card">
+      <div class="mini-card">
+        <div class="row"><input class="input" id="achTitle" placeholder="عنوان الإنجاز" style="flex:2"></div>
+        <div class="row" style="margin-top:10px"><input class="input" id="achDesc" placeholder="وصف قصير (اختياري)" style="width:100%"></div>
+        <div class="dropzone" id="achDrop" style="margin-top:10px" onclick="document.getElementById('achFile').click()">إضافة صورة 📤</div>
+        <input type="file" id="achFile" accept="image/*" class="hidden">
+        <div class="step-nav"><button class="btn orange" style="margin-inline:auto" onclick="sl_addAch()">+ إضافة</button></div>
+      </div>
+      <div class="empty" id="achEmpty">
+        <div class="big">🏆</div>
+        <b>معرضك فارغ</b>
+        <div>ارفع صور شهاداتك وميدالياتك ولحظات فخرك!</div>
+      </div>
+      <div class="gal" id="achGal"></div>
+    </div>
+  </section>
+
+  <!-- ================= المكتبة ================= -->
+  <section class="view" id="view-library">
+    <div class="page-head">
+      <button class="btn back-btn" onclick="sl_goHome()">→ العودة إلى المدينة</button>
+      <div class="page-title">المكتبة 📚</div><span></span>
+    </div>
+    <div class="card">
+      <div class="lib-banner">
+        <div class="pix" style="font-size:.7rem;color:var(--navy)">مكتبة مسار</div>
+        <h3 style="margin-top:8px">ملفات الصف <span id="libGrade">11</span></h3>
+        <p class="sub" style="margin-top:6px">مجلد Google Drive الخاص بصفك — يفتح تلقائيًا حسب الصف المسجل. مجلدات مشتركة ومخصصة لطلاب صفك.</p>
+        <a class="btn gold" style="margin-top:14px" target="_blank" rel="noopener"
+           href="https://drive.google.com/drive/folders/1nRo6eylNgcosNipeqZiBJxlTx73rZD6G?utm_source=beacons&utm_medium=lib_share&utm_campaign=goa.5ls">
+          📂 فتح مجلد Google Drive</a>
+      </div>
+      <div class="mini-card" style="text-align:center">
+        <b>كيف أستخدم المكتبة؟</b>
+        <p class="sub" style="margin-top:6px">افتح مجلد صفك، حمّل الملخصات، ثم سوِّها مع مخططك اليومي في مركز التخطيط 📝</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= بريد المستقبل ================= -->
+  <section class="view" id="view-mail">
+    <div class="page-head">
+      <button class="btn back-btn" onclick="sl_goHome()">→ العودة إلى المدينة</button>
+      <div class="page-title">بريد المستقبل 💌</div><span></span>
+    </div>
+    <div class="card">
+      <p class="sub">اكتب رسالة لنفسك في المستقبل — اختر يوم فتحها وسنحفظها لك.</p>
+      <div class="mini-card">
+        <textarea class="input" id="mailText" placeholder="...عزيزي أنا، أرتقي أن أكون قد..."></textarea>
+        <div class="row" style="margin-top:10px">
+          <button class="btn" onclick="sl_openMailPicker()">📅 فتح الرسالة في: <b id="mailDateLbl">بدون</b></button>
+          <button class="btn navy wide" style="flex:1" onclick="sl_saveMail()">إرسال إلى المستقبل 💌</button>
+        </div>
+      </div>
+      <div class="empty hidden" id="mailSaved">
+        <div class="big">💌</div><b>رسالتك محفوظة!</b>
+        <div id="mailSavedInfo"></div>
+        <button class="btn" style="margin-top:10px" onclick="sl_readMail()">اقرأ الرسالة الآن 👀</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= منتقي التاريخ ================= -->
+<div class="modal-bg" id="dateModal">
+  <div class="modal">
+    <h3 id="dateModalTitle">اختر تاريخًا</h3>
+    <div class="cal-nav">
+      <button class="btn" onclick="sl_dpNav(-1)">‹</button>
+      <b id="dpTitle"></b>
+      <button class="btn" onclick="sl_dpNav(1)">›</button>
+    </div>
+    <div class="day-cal" id="dpGrid"></div>
+    <p class="sub" id="dpErr" style="color:#c0392b;min-height:1.2em">يرجى اختيار تاريخ.</p>
+    <div class="modal-actions">
+      <button class="btn ghost" onclick="sl_closeDateModal()">إلغاء</button>
+      <button class="btn purple" onclick="sl_confirmDate()">حسنًا</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= تعديل الملف ================= -->
+<div class="modal-bg" id="editModal">
+  <div class="modal">
+    <button class="x" onclick="sl_closeEditModal()">✕</button>
+    <h3>تعديل الملف الشخصي</h3>
+    <div class="mini-card">
+      <h3>الصف</h3>
+      <div class="seg" id="editGrades">
+        <button class="tab" data-g="10">10</button>
+        <button class="tab" data-g="11">11</button>
+        <button class="tab" data-g="12">12</button>
+      </div>
+    </div>
+    <div class="mini-card">
+      <h3>الشخصية</h3>
+      <div class="avatar-pick" id="editChars"></div>
+    </div>
+    <div class="mini-card">
+      <h3>الاسم الأول</h3>
+      <input class="input" id="editName" style="width:100%">
+    </div>
+    <div class="modal-actions">
+      <button class="btn ghost" onclick="sl_closeEditModal()">إلغاء</button>
+      <button class="btn purple" onclick="sl_saveProfile()">حفظ</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="credit-card">
+    <div class="credit-mark">م</div>
+    <div class="credit-txt">
+      <small>إعداد وتطوير الموقع</small>
+      <b>معاذ بن عامر الشكيري</b>
+    </div>
+    <div class="credit-links">
+      <a class="credit-btn wa" href="https://wa.me/qr/WCPJA7QNPJO3F1" target="_blank" rel="noopener" title="واتساب">
+        <span class="ic">💬</span> واتساب
+      </a>
+      <a class="credit-btn ig" href="https://www.instagram.com/mo3th.x/" target="_blank" rel="noopener" title="إنستقرام">
+        <span class="ic">📸</span> @mo3th.x
+      </a>
+    </div>
+  </div>
+  <div class="credit-note">موقع <b>مسار</b> — مدينتك الدراسية التفاعلية</div>
+  <span class="pix">© 2026 MASAR</span>
+</footer>
+
+<div id="slToast" style="position:fixed;bottom:18px;right:50%;transform:translateX(50%);background:var(--navy);color:#fff;padding:12px 22px;border-radius:14px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .3s;z-index:999"></div>
+
+        </div>
+      </section>
+    </div><!-- /content -->
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<!-- ===== الفوتر ===== -->
+<footer class="footer">
+  <div class="foot-inner">
+    <div class="foot-right">
+      <img data-logo src="assets/icon.png" alt="MASAR"/>
+      <div><h4>MASAR | مسار</h4><small>منصة عمانية لإنتاجية الطالب</small></div>
+    </div>
+    <div class="foot-links">
+      <a class="wa-btn" id="waBtn" href="https://wa.me/96800000000" target="_blank" rel="noopener">💬 واتساب الدعم</a>
+      <a class="ig-btn" href="https://instagram.com/mo3th.x" target="_blank" rel="noopener">📸 @mo3th.x</a>
+    </div>
+  </div>
+  <div class="credits">إعداد وتصميم: <b>عامر بن خلفان الشكيري / معاذ بن عامر الشكيري</b> — جميع الحقوق محفوظة © MASAR مسار <span id="yr"></span></div>
+</footer>
+
+<!-- ===== شريط الإعلانات المتحرك (ثابت أسفل الشاشة) ===== -->
+<div class="ticker-bar" id="tickerBar">
+  <div class="ticker-label">📢 إعلانات</div>
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<!-- ===== modals ===== -->
+<div class="modal" id="roleModal"><div class="modal-card">
+  <button class="x-btn" onclick="closeModal('roleModal')">✕</button>
+  <h3 id="roleTitle">🔐 دخول موظفي المدرسة</h3>
+  <p class="mini" id="roleHint" style="margin-bottom:12px"></p>
+  <div class="field" id="roleUserWrap" style="display:none"><label>اسم المستخدم</label><input id="roleUser" dir="ltr" autocomplete="off"></div>
+  <div class="field hidden" id="roleCodeWrap"><label>رمز القسم السري</label><input id="roleCode" dir="ltr" type="password" autocomplete="off"></div>
+  <div class="field"><label id="rolePassLbl">كلمة المرور</label><input id="rolePass" type="password" autocomplete="off"></div>
+  <button class="btn primary" style="width:100%" id="doRoleLogin">دخول</button>
+</div></div>
+
+<div class="modal" id="ownerModal"><div class="modal-card">
+  <button class="x-btn" onclick="closeModal('ownerModal')">✕</button>
+  <h3>🔐 منطقة محمية — دخول المالك</h3>
+  <p class="mini" style="margin-bottom:10px">اكتب رمز المالك للدخول. لا يوجد أي زر ظاهر لهذه المنطقة في الموقع.</p>
+  <div class="field"><label>رمز المالك</label><input id="ownerPass" type="password" dir="ltr" autocomplete="off" placeholder="••••••••"></div>
+  <button class="btn primary" style="width:100%" id="doOwnerLogin">دخول</button>
+  <p class="gate-hint">الوصول: اضغط شعار مسار <b>ثلاث نقرات سريعة</b>، أو أضف <span dir="ltr">#masar-owner-9k7</span> لنهاية الرابط.</p>
+</div></div>
+
+<div class="modal" id="payModal"><div class="modal-card">
+  <button class="x-btn" onclick="closeModal('payModal')">✕</button>
+  <h3 id="payTitle">اشتراك</h3>
+  <p class="mini" style="margin-bottom:10px">حوّل المبلغ عبر بنك مسقط أو نزوى أو الأهلي ثم أدخل بياناتك ورقم الإيصال — يصل طلبك فوراً للإدارة والمالك.</p>
+  <div class="field"><label>الاسم</label><input id="payName"></div>
+  <div class="field"><label>رقم الهاتف</label><input id="payPhone" dir="ltr"></div>
+  <div class="field"><label>البنك المحوّل منه</label><input id="payBank" placeholder="بنك مسقط / نزوى / الأهلي"></div>
+  <div class="field"><label>رقم الإيصال</label><input id="payRef" dir="ltr"></div>
+  <button class="btn primary" style="width:100%" id="doPay">📨 إرسال طلب الاشتراك</button>
+</div></div>
+
+<div class="modal" id="bellModal"><div class="modal-card">
+  <button class="x-btn" onclick="closeModal('bellModal')">✕</button>
+  <h3>🔔 الإشعارات والتنبيهات</h3>
+  <div class="list-box" id="bellList" style="max-height:320px"></div>
+</div></div>
+
+<div id="toast"></div>
+<!-- ================= MASAR AUTH OVERLAY (v4) ================= -->
+<div class="auth-overlay" id="authOverlay" dir="rtl">
+  <div class="auth-shell" role="dialog" aria-modal="true" aria-labelledby="authH">
+    <aside class="auth-side">
+      <div class="auth-brand">
+        <img class="auth-m" data-logo src="assets/icon.png" alt="MASAR" style="object-fit:cover;background:none"/>
+        <div><b>MASAR</b><small>مسار — منصة الطالب العمانية</small></div>
+      </div>
+      <h2 id="authH">أهلاً بك في مسار</h2>
+      <p class="auth-lead">سجّل دخولك لتتابع جدولك وملخصاتك ومهامك — وكل تعديل تُجريه يظهر فوراً على أجهزة جميع المستخدمين بدون إعادة تحميل.</p>
+      <ul class="auth-feats">
+        <li><b>☁️ تزامن سحابي فوري</b><span>ما تضيفه هنا يظهر مباشرة عند الجميع.</span></li>
+        <li><b>👑 منطقة القيادة</b><span>المالك يتحكم بالمحتوى والحسابات والملخصات.</span></li>
+        <li><b>🏫 حسابات الإدارة والمعلمين</b><span>ينشئها المالك بمستخدم وكلمة مرور خاصة.</span></li>
+        <li><b>🔒 صلاحيات منفصلة</b><span>كل قسم يرى ما يخصه فقط.</span></li>
+      </ul>
+      <div class="auth-side-foot">إعداد وتصميم<br/><b>عامر بن خلفان الشكيري</b> / <b>معاذ بن عامر الشكيري</b> <span dir="ltr">@mo3th.x</span></div>
+    </aside>
+
+    <main class="auth-body">
+      <button class="auth-x" id="authClose" title="إغلاق">✕</button>
+      <div class="auth-tabs" id="authTabs">
+        <button type="button" data-at="mail" class="on">الدخول بالبريد</button>
+        <button type="button" data-at="user">الدخول بالحساب</button>
+      </div>
+
+      <!-- ===== نموذج البريد (Uiverse form) ===== -->
+      <div class="auth-pane on" id="ap-mail">
+        <form class="form" id="authMailForm" autocomplete="on">
+          <div class="flex-column"><label for="auEmail">Email</label></div>
+          <div class="inputForm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 32 32" height="20"><g><path fill="currentColor" d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z"></path></g></svg>
+            <input class="input" id="auEmail" type="email" dir="ltr" placeholder="name@masar.om" autocomplete="username">
+          </div>
+
+          <div class="flex-column"><label for="auPass">Password</label></div>
+          <div class="inputForm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="-64 0 512 512" height="20"><path fill="currentColor" d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0"></path><path fill="currentColor" d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0"></path></svg>
+            <input class="input" id="auPass" type="password" dir="ltr" placeholder="••••••••" autocomplete="current-password">
+          </div>
+
+          <div class="flex-row">
+            <div class="remember">
+              <input type="checkbox" id="auRemember" checked>
+              <label for="auRemember">Remember me</label>
+            </div>
+            <span class="span" id="auForgot">Forgot password?</span>
+          </div>
+
+          <button class="button-submit" type="submit" id="auSubmit">Sign In</button>
+
+          <p class="p">Don't have an account? <span class="span" id="auSignup">اطلب من المالك</span></p>
+          <p class="p line">Or With</p>
+
+          <div class="flex-row">
+            <button type="button" class="btn guest" id="auGuest1">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>
+              زائر
+            </button>
+            <button type="button" class="btn owner-b" id="auOwner" style="display:none">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 18h18l-1.6-9-4.4 4L12 5 9 13 4.6 9 3 18z"/></svg>
+              المالك
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- ===== نموذج المستخدم (Uiverse login-box) ===== -->
+      <div class="auth-pane" id="ap-user">
+        <div class="login-box">
+          <form id="authUserForm">
+            <div class="user-box">
+              <input type="text" id="auUser" required placeholder=" " dir="ltr" autocomplete="username">
+              <label>Username</label>
+            </div>
+            <div class="user-box">
+              <input type="password" id="auPass2" required placeholder=" " dir="ltr" autocomplete="current-password">
+              <label>Password</label>
+            </div>
+            <center>
+              <button class="send-btn" type="submit" id="auSubmit2">
+                SEND · دخول
+                <span></span>
+              </button>
+            </center>
+          </form>
+        </div>
+        <p class="auth-note">حسابات الإدارة والمعلمين والطلاب ينشئها <b>مالك التطبيق</b> من منطقة القيادة، بمستخدم وكلمة مرور يحددها هو — لا يمكن التسجيل الذاتي.</p>
+      </div>
+
+      <div class="auth-msg" id="authMsg"></div>
+      <div class="auth-mode" id="authMode"></div>
+    </main>
+  </div>
+</div>
+
+<!-- ===== زر إضافة ملخص سريع (يظهر للمالك والإدارة والمعلمين) ===== -->
+<button class="mc-fab" id="mcFab" type="button">➕ ملخص جديد</button>
+
+<!-- ================= محرر الملخص الذكي + العارض + حسابي ================= -->
+<div class="modal" id="summEditModal"><div class="modal-card wide">
+  <button class="x-btn" onclick="closeModal('summEditModal')">✕</button>
+  <h3 id="seTitle">📄 ملخص جديد</h3>
+  <p class="mini" style="margin-bottom:12px">اكتب الملخص نصاً (يدعم التنسيق البسيط) و/أو أضف رابط ملف خارجي، واختر الصفحة التي يظهر فيها.</p>
+  <div class="mc-grid2">
+    <div class="field"><label>الصف</label>
+      <select id="seGrade"><option value="10">الصف 10</option><option value="11">الصف 11</option><option value="12">الصف 12</option><option value="all">كل الصفوف</option></select>
+    </div>
+    <div class="field"><label>المادة</label><select id="seSubject"></select></div>
+  </div>
+  <div class="field"><label>عنوان الملخص</label><input id="seName" placeholder="مثال: ملخص الجبر والمتباينات"></div>
+  <div class="field"><label>مكان الظهور</label><select id="seSlot"></select></div>
+  <div class="field"><label>نص الملخص / الشرح</label>
+    <textarea id="seBody" style="width:100%;min-height:130px;background:rgba(242,235,220,.05);border:1px solid var(--line);border-radius:12px;padding:11px;color:var(--ink);font-family:inherit;line-height:1.9" placeholder="اكتب هنا… سطر جديد لكل فكرة&#10;يمكنك استخدام: # عنوان فرعي&#10;- نقطة&#10;**نص عريض**"></textarea>
+  </div>
+  <div class="field"><label>رابط الملف (Google Drive / PDF) — اختياري</label><input id="seUrl" dir="ltr" placeholder="https://…"></div>
+  <div class="btn-row">
+    <button class="btn primary" id="seSave">💾 حفظ الملخص</button>
+    <button class="btn ghost" onclick="closeModal('summEditModal')">إلغاء</button>
+  </div>
+</div></div>
+
+<div class="modal" id="summViewModal"><div class="modal-card wide">
+  <button class="x-btn" onclick="closeModal('summViewModal')">✕</button>
+  <h3 id="svTitle">ملخص</h3>
+  <div class="btn-row" style="margin:8px 0 12px"><span class="mc-badge y" id="svMeta"></span></div>
+  <div id="svBody" style="font-size:.84rem;line-height:2;color:var(--ink);max-height:52vh;overflow:auto"></div>
+  <div class="btn-row" id="svActs" style="margin-top:14px"></div>
+</div></div>
+
+<div class="modal" id="acctModal"><div class="modal-card">
+  <button class="x-btn" onclick="closeModal('acctModal')">✕</button>
+  <h3>👤 حسابي</h3>
+  <div id="acctBody" style="font-size:.82rem;line-height:2;margin:10px 0"></div>
+  <div class="btn-row">
+    <button class="btn primary" onclick="MC.openAuth('mail')">🔐 تبديل الحساب</button>
+    <button class="btn ghost" onclick="MC.logout()">🚪 تسجيل الخروج</button>
+  </div>
+</div></div>
+
+<div class="modal" id="bootModal"><div class="modal-card">
+  <button class="x-btn" onclick="closeModal('bootModal')">✕</button>
+  <h3>👑 تهيئة المالك</h3>
+  <p class="mini" style="margin-bottom:10px">أول تشغيل: أنشئ حساب المالك (البريد وكلمة المرور). بعدها تنشئ حسابات الإدارة والمعلمين من منطقة القيادة. لا كلمات مرور مكتوبة داخل الملف.</p>
+  <div class="field"><label>اسم المالك</label><input id="btName" placeholder="معاذ بن عامر الشكيري"></div>
+  <div class="field"><label>البريد الإلكتروني</label><input id="btEmail" dir="ltr" placeholder="owner@masar.om"></div>
+  <div class="field"><label>كلمة المرور (6 أحرف على الأقل)</label><input id="btPass" type="password" dir="ltr"></div>
+  <button class="btn primary" style="width:100%" id="btGo">🚀 إنشاء حساب المالك</button>
+</div></div>
+
+<script src="js/masar-data.js"></script>
+
+<script src="js/masar-cloud.js"></script>
+
+<script src="js/masar-logo.js"></script>
+<script src="js/masar-sections.js"></script>
+
+
+<script src="js/masar-patch42.js"></script>
+
+<script src="js/masar-patch43.js"></script>
+
+</body>
+</html>
